@@ -23,3 +23,12 @@ img{
     width: 100px;
     height: 150px;
 }
+.cantidad-carrito {
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
