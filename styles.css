@@ -94,7 +94,34 @@ main .titulo {
   margin-left: 110px;
   margin-top: 50px;
 }
+#id_productos {
+    padding: 8px 12px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    margin-right: 10px;
+}
 
+#id_productos:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+#btnEnviar {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+
+#btnEnviar:hover {
+    background-color: #0056b3;
+}   
 /*Tarjetas*/
 .contenedorprod {
   height: auto;
@@ -125,6 +152,7 @@ main .titulo {
   text-align: center;
   box-shadow: 0 0 5px rgb(104, 104, 104);
   border-radius: 5px;
+  white-space: pre-line;
 }
 .contenedorprod .productos .tarjeta:hover {
   transition: box-shadow 0.2s ease-in-out;
@@ -132,7 +160,7 @@ main .titulo {
   cursor: pointer;
   opacity: 1;
 }
-.contenedorprod .productos .tarjeta button {
+.contenedorprod .productos .tarjeta .botonComprar{
   border-radius: 10px;
   background-color: rgb(44, 169, 44);
   color: white;
@@ -143,6 +171,14 @@ main .titulo {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+.botonQuitar{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 .contenedorprod .productos img {
   width: 170px;
