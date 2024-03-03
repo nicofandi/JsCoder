@@ -4,19 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Tenemos todo para tu mascota, Alimento, Juguetes, ropa y mas">
+    <meta name="keywords"  content="petshop, juguetes, blanceado, raza, royal, Excellent">
+    <title>PRODUCTOS | TodoMascotas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="../scss/style.css">
+    <link rel="icon" type="image/png" href="../img/favicon-32x32.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body background= "../img/bgmain.jpg">
+
+        <header class="header">
+                <nav class="navbar navbar-expand-lg bg-#bacccd">
+                    <div class="container-fluid pl-1">
+                        <img src="../img/logo2.png" alt="Logo TodoMascotas">
+                        <a class="navbar-brand" href="#">Todo Mascotas</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">Contacto</a>
+                                <li class="nav-item">
+                                    <a class="nav-link">Registrarse</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">Donde encontrarnos</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link">Productos</a>
+                                </li>   
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <button id="boton-carrito" class="cantidad-carrito">0</button>
+            </header>
     <main>
         <section class="cuerpo">
             <div class="tituloprod">
-                <p>Productos</p>
+                <h1>Productos</h1>
             </div>
             <div class="titulo">
             <h2>Elja el producto que desea buscar</h2>
-            <input type="text" name="Productos" id="id_productos"><button>Enviar</button>
+            <input type="text" name="Productos" id="id_productos"><button id="btnEnviar">Enviar</button>
                 <h3>Alimento para perros</h3>
             </div>
             <div class="contenedorprod">
@@ -61,6 +102,10 @@
                 </div>
         </section>
     </main>
+    <footer>
+        <h4>Comentarios</h4>
+    <div id="contenedor-comentarios"></div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/main.js" defer></script>
 </body>

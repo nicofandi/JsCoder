@@ -7,6 +7,7 @@ const productos = [
     { id: 6, nombre: "CAT CHOW", precio: 3700 },
     { id: 7, nombre: "PRO PLAN", precio: 5900 },
 ];
+
 const encontrar = (nombre) => {
     let productoEncontrado = productos.find(producto => nombre.toUpperCase().includes(producto.nombre));
     if (productoEncontrado) {
@@ -16,8 +17,11 @@ const encontrar = (nombre) => {
             confirmButtonText: "Agregar al carrito",
         }).then((result) => {
             if (result.isConfirmed) {
-                actualizarCantidadCarrito();
                 agregarAlCarrito(productoEncontrado);
+                actualizarCantidadCarrito(); 
+                if (JSON.parse(localStorage.getItem('carrito')).length >= 2) {
+                    actualizarPrecioTotal();
+                }
             }
         });
     } else {
@@ -32,79 +36,78 @@ const agregarAlCarrito = (producto) => {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     carrito.push(producto);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    Swal.fire({
-        title: `Se agregó ${producto.nombre} al carrito por $${producto.precio}`,
-        icon: 'success',
-    });
 };
 
-const botonEnviar = document.querySelector('button');
+const botonEnviar = document.getElementById('btnEnviar');
 botonEnviar.addEventListener("click", function() {
     const nombreProducto = document.getElementById('id_productos').value;
     encontrar(nombreProducto);
 });
-let precioTotal = 0;
-
-const actualizarCantidadCarrito = () => {
-    document.addEventListener("DOMContentLoaded", function() {
-        actualizarCantidadCarrito();
-    });
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const cantidadCarrito = carrito.length;
-    const boton = document.createElement('button');
-    boton.textContent = cantidadCarrito;
-    boton.classList.add('cantidad-carrito');
-    boton.addEventListener('click', () => {
-        alert(`Cantidad en el carrito: ${precioTotal.toFixed(2)}`);
-    });
-    const body = document.querySelector('body');
-    body.appendChild(boton);
-};
 
 const actualizarPrecioTotal = () => {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    precioTotal = 0; // Reiniciar el precio total cada vez que se actualice
+    let precioTotal = 0;
     carrito.forEach(producto => {
         precioTotal += producto.precio;
     });
-    alert(`Precio total del carrito: $${precioTotal.toFixed(2)}`);
+    document.getElementById('precio-total').textContent = `$${precioTotal.toFixed(2)}`;
 };
 
+const actualizarCantidadCarrito = () => {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const cantidadCarrito = carrito.length;
+    const botonCarrito = document.getElementById('boton-carrito');
+    
+    if (cantidadCarrito > 0) {
+        botonCarrito.textContent = cantidadCarrito;
+
+        botonCarrito.addEventListener('click', () => {
+            let mensaje = `Cantidad de productos en el carrito: ${cantidadCarrito}\n\n`;
+            mensaje += "Productos en el carrito:\n";
+            carrito.forEach(producto => {
+                mensaje += `${producto.nombre}: $${producto.precio}\n`;
+            });
+
+            if (cantidadCarrito >= 2) {
+                let precioTotal = carrito.reduce((total, producto) => total + producto.precio, 0);
+                mensaje += `\nPrecio total del carrito: $${precioTotal.toFixed(2)}`;
+            }
+
+            Swal.fire(mensaje);
+        });
+    }
+};
+const botonesComprar = document.querySelectorAll('.tarjeta button');
+botonesComprar.forEach((boton, index) => {
+    boton.addEventListener('click', () => encontrar(productos[index].nombre.toLowerCase()));
+});
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const contenedorComentarios = document.getElementById("contenedor-comentarios");
+    const fetchComments = fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+        .then(response => response.json());
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('Timeout al cargar los comentarios');
+        }, 5000);
+    });
+    Promise.race([fetchComments, timeoutPromise])
+        .then(data => {
+            const comentariosHTML = data.map(comentario => `
+                <div class="comentario">
+                    <h3>${comentario.name}</h3>
+                    <p>${comentario.body}</p>
+                </div>
+            `).join('');
+            contenedorComentarios.innerHTML = comentariosHTML;
+        })
+        .catch(error => {
+            console.error('Error al cargar los comentarios, Por favor intente luego:', error);
+        });
+});
 
-// let precio = prompt("Ingrese el precio maximo");
-// if (precio) {
-//     filtrar(parseFloat(precio));
-// } else {
-//     alert("No se ha ingresado un precio real, Por favor intente de nuevo");
-// }
-// })
-
-//Funcion orden superior
-//No cobrar envio si la compra supera los $4500
-// const envio = (n) => {
-//     return (m) => m > n;
-// };
-// let precio_envio = envio(4500);
-
-// console.log(precio_envio(4599));
-// Generar  numero random entre 20 y 30
-// console.log(Math.round(Math.random()*10+20));
-
-// boton.addEventListener("click", () => {
-//     Swal.fire({
-//         title: "Ingrese le nombre del producto a buscar",
-//         input: "text",
-//         showCancelButton: true,
-//         confirmButtonText: "Confirmar",
-//       }).then((result) => {
-//         const producto = productos.find((item) => item.nombre === result.value);
-//         if (result.isConfirmed) {
-//           Swal.fire({
-//             title: `El producto ${result.value} se encuentra en stock`,
-//           });
-//         }
-//       });
-//     });
+window.addEventListener('beforeunload', () => {
+    localStorage.removeItem('carrito');
+});
+actualizarCantidadCarrito(); 

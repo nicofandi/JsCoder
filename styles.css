@@ -1,34 +1,186 @@
-main{
-    padding: 1px;
-    width: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
 }
-.tituloprod{    
-    font-size: 40px;
-    font-weight: bold;
-    font-style: italic;
+
+@font-face {
+  font-family: "Avenir Black";
+  src: url(./font/Avenir\ Black.ttf);
+  font-weight: bold;
+  font-style: bold;
 }
-.productos {
-    width: 89%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    row-gap: 2px;
-    margin: 2%;
+/*Header */
+.header {
+  background-color: #ff9e4e;
+  font-family: "Avenir Black";
+  border-color: rgb(0, 0, 0);
+  border-style: ridge;
+  border-radius: 2%;
+  height: auto;
+  width: auto;
 }
-.tarjetas{
-    padding: 10px;
+.header img {
+  width: auto;
+  height: 100px;
+  padding: 10px;
 }
-img{
-    width: 100px;
-    height: 150px;
+.header img:hover {
+  transition: 1s;
+  transform: scale(1.2);
+  cursor: pointer;
 }
-.cantidad-carrito {
-    background-color: green;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 10px;
-    position: fixed;
-    top: 20px;
+#boton-carrito {
+    position: fixed; 
+    bottom: 20px;
     right: 20px;
+    z-index: 999;
+    background-color: #00ff59;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+
+
+#boton-carrito:hover {
+    background-color: #00b315;
+}
+
+
+/*#bootstrap*/
+.container-fluid {
+  display: flex;
+}
+
+.navbar-brand {
+  font-family: "Avenir Black";
+  padding: 5px, 10%;
+  padding-right: 20%;
+  color: white;
+}
+
+.navbar-toggler {
+  box-shadow: none !important;
+  flex-direction: column;
+}
+
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/*MAIN*/
+main {
+  min-height: 80vh;
+  padding-bottom: 20px;
+}
+main p {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 0.7rem;
+}
+main .titulo {
+  font-family: "Avenir Black";
+  margin-left: 110px;
+  margin-top: 50px;
+}
+
+/*Tarjetas*/
+.contenedorprod {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
+  justify-content: center;
+}
+.contenedorprod .productos {
+  width: 69%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: 30px;
+}
+.contenedorprod .productos .tarjeta {
+  height: 404px;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-style: groove;
+  border-color: grey;
+  background-color: #f4f5f9;
+  text-align: center;
+  box-shadow: 0 0 5px rgb(104, 104, 104);
+  border-radius: 5px;
+}
+.contenedorprod .productos .tarjeta:hover {
+  transition: box-shadow 0.2s ease-in-out;
+  transform: scale(1.02, 1.02);
+  cursor: pointer;
+  opacity: 1;
+}
+.contenedorprod .productos .tarjeta button {
+  border-radius: 10px;
+  background-color: rgb(44, 169, 44);
+  color: white;
+  height: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.contenedorprod .productos img {
+  width: 170px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+.contenedorprod .productos .precio {
+  height: 2rem;
+}
+.contenedorprod .productos .oferta {
+  text-decoration: line-through;
+  height: 0px;
+}
+/*footer*/
+h4{
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#contenedor-comentarios {
+    margin-top: 20px;
+}
+.comentario {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+.comentario h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.comentario p {
+    font-size: 16px;
+    line-height: 1.6;
 }
